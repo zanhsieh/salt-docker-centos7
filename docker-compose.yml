@@ -1,0 +1,26 @@
+master:
+  image: ming/salt-master:latest
+  hostname: master
+  expose:
+    - "4505"
+    - "4506"
+  volumes:
+    - ./srv/salt:/srv/salt/:rw
+    - ./srv/pillar:/srv/pillar/:rw
+    - ./srv/reactor:/srv/reactor/:rw
+minion1:
+  image: ming/salt-minion:latest
+  links:
+    - master
+  hostname: minion1
+  volumes:
+    - ./minions/minion1:/etc/salt/minion_id
+    - ./grains/minion1:/etc/salt/grains
+minion2:
+  image: ming/salt-minion:latest
+  links:
+   - master
+  hostname: minion2
+  volumes:
+    - ./minions/minion2:/etc/salt/minion_id
+    - ./grains/minion2:/etc/salt/grains
