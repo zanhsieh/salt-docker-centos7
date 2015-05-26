@@ -32,7 +32,7 @@ Same as the original repo, jumping into salt master with `docker exec -it [maste
 Using [docker compose](https://github.com/docker/compose) is simplier. Move `docker-compose.yml.example` to `docker-compose.yml` and run:
 
 ```
-docker-compose up
+docker-compose up ＆
 ```
 
 Use same approach `docker exec -it [master_container_id] bash` to jump into salt master container.
