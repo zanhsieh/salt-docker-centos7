@@ -36,7 +36,7 @@ Use same approach `docker exec -it [master_container_id] bash` to jump into salt
 ## Build
 
 ```
-git clone git@github.com:zanhsieh/salt-docker-centos6.git
+git clone https://github.com/zanhsieh/salt-docker-centos6.git
 cd salt-docker-centos6/img_master
 docker build -t ming/salt-master .
 cd ../img_minion
