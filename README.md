@@ -17,8 +17,12 @@ Salt master will auto accept all minions.
 Run one master one minion setup.
 
 ```
-docker run -d --name=master -h master -v `pwd`/srv/salt:/srv/salt:rw -v `pwd`/srv/pillar:/srv/pillar:rw -v `pwd`/srv/reactor:/srv/reactor:rw ming/salt-master
-docker run -d --name=minion1 -h minion1 -v `pwd`/minions/minion1:/etc/salt/minion_id --link master:master ming/salt-minion
+docker run -d --name=master -h master \
+ -v `pwd`/srv/salt:/srv/salt:rw \
+ -v `pwd`/srv/pillar:/srv/pillar:rw \
+ -v `pwd`/srv/reactor:/srv/reactor:rw ming/salt-master
+docker run -d --name=minion1 -h minion1 \
+ -v `pwd`/minions/minion1:/etc/salt/minion_id --link master:master ming/salt-minion
 ```
 
 Same as the original repo, jumping into salt master with `docker exec -it [master_container_id] bash` to test/troubleshoot your state(s).
