@@ -9,6 +9,4 @@ RUN yum -y install epel-release ;\
 
 VOLUME ["/etc/salt", "/var/cache/salt", "/var/logs/salt", "/srv/salt", "/srv/pillar", "/srv/reactor"]
 
-EXPOSE 4505 4506
-
 CMD /sbin/init
