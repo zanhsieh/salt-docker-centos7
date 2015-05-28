@@ -1,6 +1,10 @@
 FROM centos:6
 MAINTAINER Ming Hsieh "zanhsieh@gmail.com"
 
+# Fix cli `top` not work
+ENV TERM dumb
+
+# Install `which` to fix salt-minion `[ERROR] 'cmd.run_stdout'` 
 RUN yum -y install epel-release ;\
     yum -y install which nc wget curl dnsutils python-pip python-devel salt-master ;\
     mkdir -p /etc/salt/master.d ; \
