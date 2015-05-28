@@ -7,6 +7,7 @@ ENV TERM dumb
 # Install `which` to fix salt-minion `[ERROR] 'cmd.run_stdout'` 
 RUN yum -y install epel-release ;\
     yum -y install which nc wget curl dnsutils python-pip python-devel salt-master ;\
+    yum clean all ;\
     mkdir -p /etc/salt/master.d ; \
     echo 'interface: 0.0.0.0' > /etc/salt/master.d/master.conf ;\
     echo 'auto_accept: True' >> /etc/salt/master.d/master.conf ;\
