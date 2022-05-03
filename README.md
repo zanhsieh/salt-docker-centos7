@@ -44,5 +44,6 @@ docker build -t ming/salt-minion .
 ```
 
 ## Special thanks
- - George Chung, for pointing out use /sbin/init as well as shadow minion_id and grains within /etc/salt.
- - Mohamed Lrhazi, for tipping on `yum -y install which` for work around `[ERROR]'cmd.run_stdout'` in salt minion on docker issue. The origin post is [here](https://groups.google.com/forum/#!topic/salt-users/6i7Kwdd-xxU)
+- All people in this [thread](https://github.com/docker/for-mac/issues/6073)
+- George Chung, for pointing out use /sbin/init as well as shadow minion_id and grains within /etc/salt.
+- Mohamed Lrhazi, for tipping on `yum -y install which` for work around `[ERROR]'cmd.run_stdout'` in salt minion on docker issue. The origin post is [here](https://groups.google.com/forum/#!topic/salt-users/6i7Kwdd-xxU)
