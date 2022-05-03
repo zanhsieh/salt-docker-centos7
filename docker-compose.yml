@@ -1,26 +1,46 @@
-master:
-  image: ming/salt-master:latest
-  hostname: master
-  expose:
-    - "4505"
-    - "4506"
-  volumes:
-    - ./srv/salt:/srv/salt/:rw
-    - ./srv/pillar:/srv/pillar/:rw
-    - ./srv/reactor:/srv/reactor/:rw
-minion1:
-  image: ming/salt-minion:latest
-  links:
+version: "3.9"
+services:
+  master:
+    image: ming/salt-master:latest
+    hostname: master
+    environment:
+      - container=docker
+    expose:
+      - "4505"
+      - "4506"
+    cap_add:
+      - SYS_ADMIN
+    tmpfs: /run
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./srv/salt:/srv/salt/:rw
+      - ./srv/pillar:/srv/pillar/:rw
+      - ./srv/reactor:/srv/reactor/:rw
+  minion1:
+    image: ming/salt-minion:latest
+    links:
+      - master
+    hostname: minion1
+    environment:
+      - container=docker
+    cap_add:
+      - SYS_ADMIN
+    tmpfs: /run
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./minions/minion1:/etc/salt/minion_id
+      - ./grains/minion1:/etc/salt/grains
+  minion2:
+    image: ming/salt-minion:latest
+    links:
     - master
-  hostname: minion1
-  volumes:
-    - ./minions/minion1:/etc/salt/minion_id
-    - ./grains/minion1:/etc/salt/grains
-minion2:
-  image: ming/salt-minion:latest
-  links:
-   - master
-  hostname: minion2
-  volumes:
-    - ./minions/minion2:/etc/salt/minion_id
-    - ./grains/minion2:/etc/salt/grains
+    hostname: minion2
+    environment:
+      - container=docker
+    cap_add:
+      - SYS_ADMIN
+    tmpfs: /run
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./minions/minion2:/etc/salt/minion_id
+      - ./grains/minion2:/etc/salt/grains
